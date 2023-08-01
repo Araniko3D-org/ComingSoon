@@ -1,0 +1,102 @@
+.page3-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* min-height: 100vh; */
+  }
+  
+  .page3-svg {
+    width: 100%;
+    height: 100%;
+    animation-name: fade-in;
+    animation-duration: 1450ms;
+    animation-timing-function: ease-out;
+  }
+
+  .logo{
+    position: absolute;
+    top:20%;
+    align-self: center;
+    animation-name: box-animate;
+    animation-duration: 2500ms;
+    animation-timing-function: ease-out;
+    height:150px;
+  }
+
+  .box{
+    position: absolute;
+    height: 110px;
+    width: 470px;
+    top:47%;
+    right:30%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    animation-name: box-animate;
+    animation-duration: 3500ms;
+    animation-timing-function: ease-out;
+    background: linear-gradient(180deg, rgba(220.97, 164.90, 247.35, 0.40) 0%, rgba(208.63, 155.69, 233.54, 0.10) 100%);
+    box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.15), 0px 4px 4px 0px rgba(255, 255, 255, 0.13) inset;
+    border-radius: 8px;
+    backdrop-filter: blur(7.5px);
+    padding:10px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .counts{
+    display: inline-block;
+    text-align: center;
+    margin: 0px 20px 0px 20px;
+  }
+
+  .value, .coln{
+    font-size: 50px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .email{
+    position: absolute;
+    top:74%;
+    opacity: 70%;
+    animation-name: box-animate;
+    animation-duration: 4500ms;
+    animation-timing-function: ease-out;
+    width:300px;
+    font-size: 12px;
+    color: #172C45;
+    border-radius: 25px;
+    background: #ffffff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.30) inset;
+    padding:5px;
+    padding: 7px 14px 2px 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .iconSend{
+    height:20px;
+  }
+
+  @keyframes box-animate {
+    0% {
+      opacity: 0; 
+    }
+    70% {
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0; 
+      transform: scale(1.2);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  

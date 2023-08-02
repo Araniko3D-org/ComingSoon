@@ -2,33 +2,39 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* min-height: 100vh; */
+    text-align: center;
+    overflow: hidden;
   }
   
   .page3-svg {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    height: 110%;
     animation-name: fade-in;
     animation-duration: 1450ms;
     animation-timing-function: ease-out;
   }
 
+  .content{
+    display: block;
+    align-items:center;
+    /* margin: auto; */
+    padding: 10%;
+  }
+
   .logo{
-    position: absolute;
-    top:20%;
-    align-self: center;
+    opacity: 70%;
     animation-name: box-animate;
     animation-duration: 2500ms;
     animation-timing-function: ease-out;
     height:150px;
+    align-items: center;
   }
 
   .box{
-    position: absolute;
-    height: 110px;
+    height: 20%;
     width: 470px;
-    top:47%;
-    right:30%;
     background-color: #ffffff;
     border-radius: 20px;
     animation-name: box-animate;
@@ -41,6 +47,7 @@
     padding:10px 20px 10px 20px;
     display: flex;
     justify-content: space-between;
+    
   }
 
   .counts{
@@ -55,8 +62,6 @@
   }
 
   .email{
-    position: absolute;
-    top:74%;
     opacity: 70%;
     animation-name: box-animate;
     animation-duration: 4500ms;
@@ -71,6 +76,8 @@
     padding: 7px 14px 2px 20px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 15%;
   }
 
   .iconSend{

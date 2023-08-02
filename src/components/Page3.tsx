@@ -3,7 +3,7 @@ import "../styles/Page3.css";
 import { useState } from "react";
 // import SendIcon from '@mui/icons-material/Send';
 
-const url = "http://192.168.1.66:8000/notify";
+const url = "https://araniko3d-backendweb.onrender.com/notify";
 
 const Page3 = () => {
   const [emailValue, setEmailValue] = useState("");

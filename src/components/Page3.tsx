@@ -1,14 +1,38 @@
-// import React from 'react';
 import "../styles/Page3.css";
-import { useState } from "react";
-// import SendIcon from '@mui/icons-material/Send';
+import { useState, useEffect } from "react";
+import moment from "moment";
 
 const url = "https://araniko3d-backendweb.onrender.com/notify";
 
 const Page3 = () => {
   const [emailValue, setEmailValue] = useState("");
   const [buttonDisabled, setbuttonDisabled] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [timerObject, setTimerObject] = useState({});
   const validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+  useEffect(() => {
+    const a = setInterval(updateClock, 1000);
+    return () => {
+      clearInterval(a);
+    };
+  }, []);
+
+  const countdownDate = moment("2023-08-15");
+  function updateClock() {
+    const currentDate = moment();
+    //@ts-ignore
+    const duration = moment.duration(countdownDate - currentDate);
+    const diffDays = countdownDate.diff(currentDate, "day");
+    const t = {
+      days: diffDays,
+      hours: duration.hours(),
+      minutes: duration.minutes(),
+      seconds: duration.seconds(),
+    };
+    setTimerObject(t);
+    console.log(t);
+  }
 
   const handleChange = (e: any) => {
     const value = e.target.value;
@@ -35,8 +59,7 @@ const Page3 = () => {
       if (!response.ok) {
         throw new Error("Network Responded with error");
       }
-      const responseData = await response.json()
-      console.log(responseData);
+      setModalVisible(true);
     } catch (error) {
       console.log(error);
     }
@@ -48,27 +71,29 @@ const Page3 = () => {
         <img src="/logo.png" className="logo" />
         <div className="box">
           <div className="counts">
-            <div className="value">12</div>Days
+            <div className="value">{timerObject.days}</div>Days
           </div>
           <div className="coln">:</div>
           <div className="counts">
-            <div className="value">12</div>Hours
+            <div className="value">{timerObject.hours}</div>Hours
           </div>
           <div className="coln">:</div>
           <div className="counts">
-            <div className="value">12</div>Minutes
+            <div className="value">{timerObject.minutes}</div>Minutes
           </div>
           <div className="coln">:</div>
           <div className="counts">
-            <div className="value">12</div>Seconds
+            <div className="value">{timerObject.seconds}</div>Seconds
           </div>
         </div>
         <div className="email">
+          <div className="notify">Notify me</div>
           <input
             type="text"
-            placeholder="Notify me"
+            placeholder="Enter email"
             value={emailValue}
             onChange={handleChange}
+            className="inputs"
           />
           <div className="iconCircle">
             <button
@@ -76,11 +101,40 @@ const Page3 = () => {
               disabled={buttonDisabled}
               onClick={handleClick}
             >
-              <img className="iconSend" src="/sendIcon.png"></img>
+              <img
+                className="iconSend"
+                src="/sendIcon.png"
+                style={{
+                  opacity: buttonDisabled ? 0.3 : 1,
+                  cursor: buttonDisabled ? "not-allowed" : "pointer",
+                }}
+              ></img>
             </button>
           </div>
         </div>
       </div>
+      {modalVisible && (
+        <div className="modalContainer">
+          <div
+            className="modalBackdrop"
+            onClick={() => {
+              setModalVisible(false);
+            }}
+          ></div>
+          <div className="modalContent">
+            You will be notified when the website onboards.
+            <br></br>
+            <button
+              onClick={() => {
+                setModalVisible(false);
+              }}
+              className="closeButton"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

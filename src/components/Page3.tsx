@@ -71,19 +71,43 @@ const Page3 = () => {
         <img src="/logo.png" className="logo" />
         <div className="box">
           <div className="counts">
-            <div className="value">{timerObject.days}</div>Days
+            <div className="value">
+              {
+                //@ts-ignore
+                timerObject.days
+              }
+            </div>
+            Days
           </div>
           <div className="coln">:</div>
           <div className="counts">
-            <div className="value">{timerObject.hours}</div>Hours
+            <div className="value">
+              {
+                //@ts-ignore
+                timerObject.hours
+              }
+            </div>
+            Hours
           </div>
           <div className="coln">:</div>
           <div className="counts">
-            <div className="value">{timerObject.minutes}</div>Minutes
+            <div className="value">
+              {
+                //@ts-ignore
+                timerObject.minutes
+              }
+            </div>
+            Minutes
           </div>
           <div className="coln">:</div>
           <div className="counts">
-            <div className="value">{timerObject.seconds}</div>Seconds
+            <div className="value">
+              {
+                //@ts-ignore
+                timerObject.seconds
+              }
+            </div>
+            Seconds
           </div>
         </div>
         <div className="email">

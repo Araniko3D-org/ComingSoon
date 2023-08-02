@@ -43,9 +43,9 @@ const Page3 = () => {
   };
   return (
     <div className="page3-container">
-      <img src="/src/assets/page3.svg" alt="Page 3 SVG" className="page3-svg" />
+      <img src="/page3.svg" alt="Page 3 SVG" className="page3-svg" />
       <div className="content">
-        <img src="/src/assets/logo.png" className="logo" />
+        <img src="/logo.png" className="logo" />
         <div className="box">
           <div className="counts">
             <div className="value">12</div>Days
@@ -76,7 +76,7 @@ const Page3 = () => {
               disabled={buttonDisabled}
               onClick={handleClick}
             >
-              <img className="iconSend" src="/src/assets/sendIcon.png"></img>
+              <img className="iconSend" src="/sendIcon.png"></img>
             </button>
           </div>
         </div>

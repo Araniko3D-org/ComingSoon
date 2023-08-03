@@ -6,9 +6,12 @@ const url = "https://araniko3d-backendweb.onrender.com/notify";
 
 const Page3 = () => {
   const [emailValue, setEmailValue] = useState("");
-  const [buttonDisabled, setbuttonDisabled] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [timerObject, setTimerObject] = useState({});
+  const [infoText, setInfoText] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const validRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
   useEffect(() => {
@@ -31,23 +34,24 @@ const Page3 = () => {
       seconds: duration.seconds(),
     };
     setTimerObject(t);
-    console.log(t);
   }
 
   const handleChange = (e: any) => {
     const value = e.target.value;
     setEmailValue(value);
     if (value.match(validRegex) && buttonDisabled) {
-      setbuttonDisabled(false);
+      setButtonDisabled(false);
     }
     if (!value.match(validRegex) && !buttonDisabled) {
-      setbuttonDisabled(true);
+      setButtonDisabled(true);
     }
   };
 
   const handleClick = async (e: any) => {
     try {
       e.preventDefault();
+      setLoading(true);
+      setButtonDisabled(true);
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -56,10 +60,17 @@ const Page3 = () => {
         },
         body: JSON.stringify({ email: emailValue }),
       });
-      if (!response.ok) {
-        throw new Error("Network Responded with error");
+      if (response) {
+        if (!response.ok) {
+          setInfoText("Something went Wrong.Please try again!");
+          console.log(response);
+        } else {
+          setInfoText("Successfully Subscribed! You will soon be notified.");
+        }
+        setModalVisible(true);
+        setLoading(false);
+        setEmailValue("");
       }
-      setModalVisible(true);
     } catch (error) {
       console.log(error);
     }
@@ -120,20 +131,26 @@ const Page3 = () => {
             className="inputs"
           />
           <div className="iconCircle">
-            <button
-              className="notifyButton"
-              disabled={buttonDisabled}
-              onClick={handleClick}
-            >
-              <img
-                className="iconSend"
-                src="/sendIcon.png"
-                style={{
-                  opacity: buttonDisabled ? 0.3 : 1,
-                  cursor: buttonDisabled ? "not-allowed" : "pointer",
-                }}
-              ></img>
-            </button>
+            {loading ? (
+              <div className="spinner-container">
+                <div className="loading-spinner"></div>
+              </div>
+            ) : (
+              <button
+                className="notifyButton"
+                disabled={buttonDisabled}
+                onClick={handleClick}
+              >
+                <img
+                  className="iconSend"
+                  src="/sendIcon.png"
+                  style={{
+                    opacity: buttonDisabled ? 0.3 : 1,
+                    cursor: buttonDisabled ? "not-allowed" : "pointer",
+                  }}
+                ></img>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -146,7 +163,7 @@ const Page3 = () => {
             }}
           ></div>
           <div className="modalContent">
-            You will be notified when the website onboards.
+            {infoText}
             <br></br>
             <button
               onClick={() => {

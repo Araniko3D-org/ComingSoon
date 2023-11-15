@@ -21,7 +21,7 @@ const Page3 = () => {
     };
   }, []);
 
-  const countdownDate = moment("2023-11-15");
+  const countdownDate = moment("2023-11-18");
   function updateClock() {
     const currentDate = moment();
     //@ts-ignore
